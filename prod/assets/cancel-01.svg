@@ -1,0 +1,11 @@
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #1d1d1b;
+      }
+    </style>
+  </defs>
+  <title>cancel</title>
+  <path class="cls-1" d="M28.94,31.79L0.61,60.11A2,2,0,0,0,3.46,63L32,34.42,60.54,63a2,2,0,1,0,2.85-2.85L35.06,31.79,63.41,3.44A2,2,0,0,0,60.56.59L32,29.15,3.44,0.59A2,2,0,0,0,.59,3.44Z"/>
+</svg>

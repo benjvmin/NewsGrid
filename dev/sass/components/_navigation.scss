@@ -1,0 +1,296 @@
+// navigation
+nav {
+  width: 100%;
+  height: 50px;
+  position: fixed;
+  background-color: var(--nav-color);
+  top: 0;
+  left: 0;
+  z-index: 2;
+  display: flex;
+
+  .menu-button {
+    height: 100%;
+    width: 100%;
+    flex-basis: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    cursor: pointer;
+    margin-left: 20px;
+
+    @for $i from 1 through 3 {
+      &:hover .rectangles rect:nth-child(#{$i}) {
+        transform: translateX(-20px) translateY(20px);
+      }
+    }
+
+    @for $i from 7 through 9 {
+      &:hover .rectangles rect:nth-child(#{$i}) {
+        transform: translateX(20px) translateY(20px);
+      }
+    }
+
+    @include respond-to("min-width", medium) {
+      width: 150px;
+      flex-basis: 150px;
+    }
+
+    & .menu-button__menu-grid {
+      width: 100%;
+      max-width: 25px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-content: center;
+
+      @include respond-to("min-width", medium) {
+        width: 100%;
+        max-width: 35px;
+      }
+
+      & svg {
+        //   background-color: pink;
+
+        & .rectangles {
+          rect {
+            transition: all 0.2s ease-in-out;
+          }
+        }
+      }
+    }
+
+    & .menu-button__menu-text {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      padding: 0 10px;
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+  }
+}
+
+
+.menu {
+  position: fixed;
+  width: 100%;
+  height: calc(100vh - 50px);
+  will-change: transform;
+  transform: translate3d(0, -110%, 0);
+  background-color: var(--menu-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.4s cubic-bezier(.6,.23,0,.87);
+
+  &.active {
+    transform: translate3d(0, 0%, 0);
+  }
+
+  & .exit {
+    // background-color: pink;
+    position: absolute;
+    top: 10px;
+    left: 30px;
+    cursor: pointer;
+    z-index: 1;
+    -webkit-tap-highlight-color: transparent;
+    @include respond-to("min-width", medium) {
+      left: 45px;
+    }
+
+    svg#exit-icon {
+      width: 25px;
+
+      & .exit-path {
+        fill: var(--font-color);
+
+      }
+    }
+  }
+
+  @for $i from 2 through 4 {
+    & .menu-module:nth-child(#{$i}) {
+      transition-delay: (0.045s * $i);
+      // background-color: pink;
+    }
+  }
+
+
+  & .menu-module {
+    padding: 10px 0;
+    color: var(--font-color);
+    width: 100%;
+    transform: translateX(-20%);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.215, 0.610, 0.355, 1);
+
+    &.slide-in {
+      transform: translateX(0%);
+      opacity: 1;
+    }
+
+    & ul.menu-list {
+      // background-color: pink;
+      display: flex;
+      flex-direction: column;
+
+      @include respond-to("min-width", large) {
+        justify-content: center;
+        flex-direction: column;
+      }
+
+      & li.menu-list__menu-item {
+        padding: 15px 0px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        font-weight: 400;
+      }
+    }
+
+    & h3.menu-header {
+      font-weight: 500;
+      padding: 10px 30px;
+      margin: auto;
+      max-width: 340px;
+    }
+
+    & hr {
+      border-top: 2px solid #eee;
+      border-bottom: 0;
+      border-left: 0;
+      border-right: 0;
+    }
+
+    & .menu-grid {
+      $colors: red, indigo, orange, orangered, green, blue, slateblue, violet, gray;
+
+      display: grid;
+      padding: 20px;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(3, 40px);
+      grid-gap: 15px;
+      max-width: 300px;
+      background-color: var(--nav-color);
+      margin: auto;
+      -webkit-tap-highlight-color: transparent;
+
+      @include respond-to("min-width", medium) {
+        border-radius: 2px;
+      }
+
+      & .menu-grid__property {
+        border-radius: 2px;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+      & .menu-grid__property.default {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        // border: 3px dashed rgba(37, 41 ,46, 0.8);
+      }
+
+      & .menu-grid__property.default:before {
+        content: "";
+        display: block;
+        width: 6px;
+        height: 15px;
+        border: solid white;
+        border-width: 0 3px 3px 0;
+        transform: rotate(45deg);
+      }
+
+      @each $color in $colors {
+        & .menu-grid__property.#{$color} {
+          background-color: var(--#{$color});
+
+
+        }
+      }
+    }
+  }
+}
+
+.dark-mode {
+  max-width: 400px;
+  margin: auto;
+
+  & h3.menu-header {
+
+  }
+  & .dark-mode-toggle {
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
+    width: 80px;
+    // background-color: white;
+    border-radius: 6px;
+    padding: 5px 10px;
+    margin: 0 0 0 20px;
+    @include respond-to("min-width", medium) {
+      width: 80px;
+      border-radius: 60px;
+
+    }
+
+
+    //SVG Component
+    & svg.dark-mode-button {
+      padding: 0 0 20px 0;
+      
+      & .background {
+        fill: var(--font-color);
+      }
+
+      & .cls-2 {
+        fill: var(--menu-color);
+      }
+
+      & .toggle-button {
+    
+
+        &.dark-active {
+          animation-name: toggle-dark;
+          animation-duration: 0.3s;
+          animation-iteration-count: 1;
+          animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+          animation-delay: 0s;
+          animation-fill-mode: forwards;
+          @keyframes toggle-dark {
+            0% { 
+              transform: translateX(0) scale(1, 1);              
+             }
+
+            100% {
+              transform: translate(25px, 0px) scale(1, 1);
+            }
+          } 
+
+        }
+        &.light-active {
+          animation-name: toggle-light;
+          animation-duration: 0.3s;
+          animation-iteration-count: 1;
+          animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+          animation-delay: 0s;
+          animation-fill-mode: forwards;
+          @keyframes toggle-light {
+            0% { 
+              transform: translate(25px,0) scale(1, 1);              
+             }
+            100% {
+              transform: translate(0px, 0px) scale(1, 1);
+            }
+          } 
+        }
+      }
+    }
+  }
+}

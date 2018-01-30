@@ -1,0 +1,99 @@
+.news {
+  //.news Custom Properties
+  --columns: 1fr;
+  --rows: repeat(6, 220px);
+
+  //.news Component Properties
+  display: grid;
+  grid-template-columns: var(--columns);
+  grid-template-rows: var(--rows);
+  color: white;
+  height: auto;
+  transition: filter 0.3s ease-in-out;
+  margin-top: 50px;
+
+  //.news Nested Media Queries
+  @include respond-to("min-width", medium) {
+    --rows: repeat(3, 1fr);
+    --columns: repeat(3, 1fr);
+    height: calc(100vh - 50px);
+  }
+
+  & .news-card {
+    //.news-card  Custom Properties
+
+
+   
+
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    box-shadow: var(--box-shadow);
+
+     //.news-card Nested Media Queries
+    @include respond-to("min-width", medium) {
+      --box-shadow: inset 0px -8px 6px 1px rgba(0, 0, 0, 0.1);
+    }
+
+    &:nth-child(1) {
+      background-image: var(--linear-gradient), resolve("mountains.jpg");
+      background-size: cover;
+      background-position: center;
+      // background: resolve('mountains.jpg') var(--linear-gradient);
+
+      @include respond-to("min-width", medium) {
+        grid-row: 1 / -1;
+      }
+    }
+
+    &:nth-child(2) {
+      background-image: var(--linear-gradient), resolve("football.jpg");
+      background-size: cover;
+      @include respond-to("min-width", medium) {
+        grid-row: span 2;
+      }
+    }
+
+    &:nth-child(3) {
+      background-image: var(--linear-gradient), resolve("plants.jpg");
+      background-size: cover;
+    }
+
+    &:nth-child(4) {
+      background-image: var(--linear-gradient), resolve("city.jpg");
+      background-size: cover;
+      background-position: center;
+    }
+
+    &:nth-child(5) {
+      background-image: var(--linear-gradient), resolve("boys.jpg");
+      background-position: center;
+      background-size: cover;
+    }
+
+    &:nth-child(6) {
+      background-image: var(--linear-gradient), resolve("bowl.jpg");
+      background-size: cover;
+    }
+
+    .news-card__title {
+      margin-left: 10px;
+      
+      @include respond-to("min-width", medium) {
+        margin: 0;  
+      }
+      font-weight: 600;
+
+    }
+
+    .news-card__author {
+      margin-left: 10px;
+      @include respond-to("min-width", medium) {
+        margin: 0;  
+      }
+      font-weight: 300;
+      padding: 10px 0;
+    }
+  }
+}

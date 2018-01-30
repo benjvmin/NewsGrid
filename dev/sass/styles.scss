@@ -1,0 +1,49 @@
+@import "normalize/reset";
+@import "normalize/normalize";
+@import "mixins/mixins";
+@import "breakpoints/breakpoints";
+@import "typography/typography";
+@import "components/navigation.scss";
+@import "components/newscard.scss";
+
+:root {
+  --font-size: 16px;
+  --font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --color-one: rgba(230, 218, 218, 0.7);
+
+  --red: rgba(255, 0 ,0, 0.7);
+  --indigo: rgba(102, 51, 153, 0.7);
+  --orange: rgba(255, 165, 0, 0.7);
+  --orangered: rgba(255, 69 ,0, 0.7);
+  --green: rgba(46, 139 ,87, 0.7);
+  --blue: rgba(30, 144 ,255, 0.7);
+   --slateblue: rgba(72, 61 ,139, 0.7);
+  --violet: rgba(238, 130 ,238, 0.7);
+  --gray: rgba(37, 41, 46, 0.7);
+
+  --linear-gradient: linear-gradient(to bottom, var(--color-one), var(--indigo));
+  --box-shadow: inset 0px -8px 6px 1px rgba(0, 0, 0, 0.03);
+
+  --nav-color: rgba(247, 247, 247, 0.98);
+  --menu-color: rgba(37, 41, 46, 0.98);
+
+
+  --font-color: white;
+
+}
+
+html {
+  width: 100%;
+  font-family: var(--font-family);
+}
+
+body {
+  width: 100%;
+  font-size: 100%;
+  position: relative;
+}
+
+main {
+  // height: calc(100% - 50px);
+  // margin: 50px 0 0 0;
+}
