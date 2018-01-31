@@ -37,7 +37,7 @@ Most CSS Variable tutorials will introduce a ```:root``` selector, which [per MD
   grid-template-columns: var(--columns);
   grid-template-rows: var(--rows);
 ```
-As you can see, we have our rows and columns defined as named properties ```--news-columns```, & ```--news-rows```, and then we assign them under ```grid-template-columns``` & ```grid-template-rows```. Besides the idea that these properties are only available to the ```.news``` component, what benefits do we get from this? Well these variables are now scoped to the individual ```.news``` component, and are available to each child element of the ```.news``` component as well, thanks to the cascading nature of CSS. Not every custom property needs to be defined globally, we can set and reuse declarations on a component level basis. This gives us some granular control over our declarations, and how we can redefine them. Imagine having a component with a subgrid, that has it's own scoped row and column declarations that can be redefined as needed when the screen is resized. I'd say take some time to think about if your declaration needs to be defined globally however, you don't want to run into a scenario where your delcaration needs to be available to other components. If a property you are defining needs to be referenced in multiple components, stick in in the root selector. 
+As you can see, we have our rows and columns defined as named properties ```--news-columns```, & ```--news-rows```, and then we assign them under ```grid-template-columns``` & ```grid-template-rows```, using the ```var()``` function. Besides the idea that these properties are only available to the ```.news``` component, what benefits do we get from this? Well these variables are now scoped to the individual ```.news``` component, and are available to each child element of the ```.news``` component as well, thanks to the cascading nature of CSS. Not every custom property needs to be defined globally, we can set and reuse declarations on a component level basis. This gives us some granular control over our declarations, and how we can redefine them. Imagine having a component with a subgrid, that has it's own scoped row and column declarations that can be redefined as needed when the screen is resized. I'd say take some time to think about if your declaration needs to be defined globally however, you don't want to run into a scenario where your delcaration needs to be available to other components. If a property you are defining needs to be referenced in multiple components, stick in in the root selector. 
 
 
 # 2. Media Queries 
@@ -62,7 +62,7 @@ Once we throw media queries in the mix, having component level grid declaration 
 In the code above, we can now redefine our custom properties inside the media query, because unlike variables inside a preprocessor such as SASS, Custom Properties are living, breathing values inside the browser, and can be redefined as our design grows bigger. This makes our lives easier as developers because we are now just assigning our layout value once, and then adjusting the custom properties as necessary, instead of having to redeclare and redefine layout properties on our component every time the screen size changes. We can also see how the organization of our CSS changes now, having both custom property & responsive declarations both as properties of the ```.news``` component. Now all of a sudden we have the obligation to organize our code in such a way that our Custom Property declarations, component styles,and media queries need to co-exist peacefully. Much more work can be done on this front- maybe a methodology can help us keep all of these things consistent under the hood, but for now it's important to keep them clean and organized so that we can visually seperate them, because with a lot of CSS, it can get messy quick. 
 
 
-# 2. Theming & Javascript
+# 3. Theming & Javascript
 I believe that component level Custom Properties excel the most when used in tandem with layout, but there are many other areas where you would want to have globally defined custom properties under the ```:root``` selector, and available for every component to hook into and change. A simple example would be defining a font & size, such as 
 
 ```CSS
@@ -109,11 +109,26 @@ Javascript immediately makes this interesting now, giving us the potential to ch
 ```javascript
 
 const root = document.documentElement;
-const color = "green";
+const color = "green"; // Could be red, gray, violet, etc.
 
 root.style.setProperty("--linear-gradient", `linear-gradient(to bottom, var(--color-one), var(--${color}))`);
 ```
 
 This is a simplified version no doubt, but we can see how we can leverage this with an event to swiftly change colors of every element with a the custom ```--linear-gradient``` property applied. Note that we are just passing the color name in of a custom variable we have already defined, but instantly we can see the benefits of using javascript to hook in an change every instance of the custom property. 
+
+# 4. Fallback Values
+One quick note here about the Custom Properties specification, is the ability to provide fallback values inline with your ```var()``` function.
+```CSS
+
+nav {
+  /* Nav color is not defined */ 
+  background-color: var(--nav-color, purple);
+}
+```
+If there is no --nav-color variable defined (whether globally or on a component level) then the fallback to purple is used. Do note that per [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_variables), overusing this can provide heavy performance issues, due to calculation from the browser, so be careful when you do use them. 
+
+
+# Conclusion
+My hope is that this can be a living document, where I continually add what I'm learning about these specifications and their continued use in my applications. Gone are the days where I am using intense float or inline-block hacks to elevate my layout, those days were in the rearview when flexbox was introduced, but now more than ever are they disappearing. We haven't reached widespread adoption of Custom Properties and CSS Grid quite yet because of browser support- at my old internship I wouldn't even be able to sniff at these specifications. Now that I've used them freely however, it quickly becomes empowering to create anything you can possibly imagine. Maybe not today, or tomorrow, or even a year from now we will be seeing more of this in the wild, but slowly and surely as father time erases the existence of Internet Explorer, we can see these specifications blossom into frution. 
 
 
