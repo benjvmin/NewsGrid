@@ -6,7 +6,7 @@ A mock News Application demonstrating how CSS Grid & CSS Custom Properties can c
 
 Change the color theme under the menu options, as well as a dark mode toggle.
 
-#What I learned While Embracing CSS Grid & CSS Custom Properties (CSS Variables)
+# What I learned While Embracing CSS Grid & CSS Custom Properties (CSS Variables)
 
 If it hasn't been clear now how CSS Grid will forever change the way we reason with layout in CSS- let me help clarify a bit. This shift towards an all encompassing layout solution is signigicant on it's own for a number of reasons, but alongside CSS Custom Properties spec, it downright a gamechanger in how we reason about CSS from napkin mockup to shipped product. 
 
@@ -25,7 +25,7 @@ Custom Properties
 
 Here are the biggest things I've learned from putting these specs into practice.
 
-#1. Variable Scope 
+# 1. Variable Scope 
 Have you been acclimated with ```:root``` element yet? This the recommended way to organize application wide variables, as it provides the highest specificity without inherinately declaring component level CSS, with all the benefits of the cascade. What about components though? Can we provide declare compenent level properties and reuse them? Yes we can, and when combined with CSS Grid, our CSS starts to look a little different. Lets take the outer .news component for instance.
 ```CSS
 
@@ -46,7 +46,7 @@ Have you been acclimated with ```:root``` element yet? This the recommended way 
 As you can see here we have our rows and columns defined as named properties ```--columns```, & ```--rows```, and then we assign them under ```grid-template-columns``` & ```grid-template-rows```. Besides the idea that these properties are only available to the ```.news``` component, what benefits do we get from this? Well these variables aren't available to other components outside of the the CSS declaration they are defined in, giving you explicit control over resusable parts of your component. Not only that, but now every child of the  ```.news``` component has access to the defined custom properties. This gives you the ability to reuse and redefine component level properties, without worrying about global properties if you are not using them. Don't go crazy though- there is a reason why the ```:root``` element is so important, because it gives you resuable CSS through the ENTIRE document. If a property you are defining needs to be referenced in multiple components, stick in in the root selector.
 
 
-#2. Media Queries 
+# 2. Media Queries 
 Combining Media Queries with Variable scope gives unlocks a profound way of handling responsive design. 
 
 (More to come soon)
