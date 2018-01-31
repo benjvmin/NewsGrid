@@ -7,11 +7,11 @@ class path {
 }
 
 /*             Asset Pathways            */
-//Production CSS Path (source, destionation)
-const cssPath = new path("prod/css/*.css", "prod/css");
+//Production CSS Path (source, destination)
+const cssPath = new path("prod/css/*.css", "prod");
 
 //Sass Path
-const sassPath = new path("dev/sass/**/*.scss", "prod/css");
+const sassPath = new path("dev/sass/**/*.scss", "prod");
 
 //Pug File Paths
 const pugPath = new path("dev/pug/**/*.pug", "prod");
