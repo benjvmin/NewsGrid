@@ -1,14 +1,12 @@
-# News Grid
-
 [Demo Here](https://benjvmin.github.io/NewsGrid/prod/index.html)
 
 A mock News Application demonstrating how CSS Grid & CSS Custom Properties can change the look and feel of an application with minimal javascript. 
 
 Change the color theme under the menu options, as well as a dark mode toggle.
 
-# What I learned While Embracing CSS Grid & CSS Custom Properties (CSS Variables)
+# What I learned While Combining CSS Grid & CSS Custom Properties (CSS Variables)
 
-If it hasn't been clear now how CSS Grid will forever change the way we reason with layout in CSS- I'd hope that what I can put forth will help facilitate that discussion. This shift towards a multifaceted layout solution is signigicant on it's own for a number of reasons, but alongside CSS Custom Properties spec, it downright a gamechanger in how we reason with responsive stylesheets. Together [CSS Grid](https://caniuse.com/#feat=css-grid) & [CSS Variables](https://caniuse.com/#search=css%20variables) operate on nearly the same amount of browsers together, while each spec provides a foundation for how we work with CSS now & in the future. Therefore it's highly important that must explore what can be done to correctly utilize CSS Grid & CSS Custom Properties together to reach their maximum potential. 
+Presently, I embrace the notion that we are still experiencing the beginning stages in CSS Grid's widespread adoption, which is poised to completely change the way we reason with layout in CSS. This shift towards a multifaceted layout solution is signigicant on it's own for a number of reasons, but alongside CSS Custom Properties spec, it downright a gamechanger in how we rationalize responsive stylesheets. Together [CSS Grid](https://caniuse.com/#feat=css-grid) & [CSS Variables](https://caniuse.com/#search=css%20variables) operate on nearly the same amount of browsers together, with each spec providing a foundation for how we work with CSS, both presently & in the future. I'd hope to bring forward my experiences embracing both of these abundant specifications together, with an expectation that I can further help facilitate discussion around correctly utiliziling CSS Grid & CSS Custom Properties in tandem to reach their maximum potential, and at the small expense of browser support. 
 
 For the uninitiated here are some fantastic resouces on CSS Grid & Custom Properties
 
@@ -26,31 +24,39 @@ Custom Properties
 Here are the biggest things I've learned from putting these specs into practice.
 
 # 1. Variable Scope 
-Have you been acclimated with ```:root``` element yet? This the recommended way to organize application wide variables, as it provides the highest specificity without inherinately declaring component level CSS, with all the benefits of the cascade. What about components though? Can we provide declare compenent level properties and reuse them? Yes we can, and when combined with CSS Grid, our CSS starts to look a little different. Lets take the outer .news component for instance.
+Most CSS Variable tutorials will introduce a ```:root``` selector, which [per MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/:root) mentions that it's essentially an ```html``` selector with an even higher specificity in the document. Aligning our custom properties under this selector provides us with control over application wide declarations, and the ability for each component to inherit and redefine these variables, giving us the power to "theme" our website, and redefine each declaration as we (or the user) would please. What about components though? Can we declare compenent level properties and reuse them, just as we can with ```:root```? Why, yes we can, and when combined with CSS Grid, our CSS starts to look a little different from here. Lets take the outer ```.news``` component for instance.
+
 ```CSS
-
 .news {
-  //.news Custom Properties
-  --columns: 1fr;
-  --rows: repeat(6, 220px);
+  /* news Custom Properties */
+  --news-columns: 1fr;
+  --news-rows: repeat(6, 220px);
 
-  //.news Component Properties
+  /* .news Component Properties */
   display: grid;
   grid-template-columns: var(--columns);
   grid-template-rows: var(--rows);
-  color: white;
-  height: auto;
-  transition: filter 0.3s ease-in-out;
-  margin-top: 50px;
 ```
-As you can see here we have our rows and columns defined as named properties ```--columns```, & ```--rows```, and then we assign them under ```grid-template-columns``` & ```grid-template-rows```. Besides the idea that these properties are only available to the ```.news``` component, what benefits do we get from this? Well these variables aren't available to other components outside of the the CSS declaration they are defined in, giving you explicit control over resusable parts of your component. Not only that, but now every child of the  ```.news``` component has access to the defined custom properties. This gives you the ability to reuse and redefine component level properties, without worrying about global properties if you are not using them. Don't go crazy though- there is a reason why the ```:root``` element is so important, because it gives you resuable CSS through the ENTIRE document. If a property you are defining needs to be referenced in multiple components, stick in in the root selector.
+As you can see, we have our rows and columns defined as named properties ```--news-columns```, & ```--news-rows```, and then we assign them under ```grid-template-columns``` & ```grid-template-rows```. Besides the idea that these properties are only available to the ```.news``` component, what benefits do we get from this? Well these variables are now scoped to the individual ```.news``` component, and are available to each child element of the ```.news`` component as well. Not every custom property needs to be defined globally, we can set and reuse declarations on a component level basis. This gives us some granular control over our declarations, and how we can redefine them. Imagine having a component with a subgrid, that has it's own scoped row and column declarations that can be redefined as needed when the screen is resized. I'd say take some time to think about if your declaration needs to be defined globally however, you don't want to run into a scenario where your delcaration needs to be available to other components. If a property you are defining needs to be referenced in multiple components, stick in in the root selector. 
 
 
 # 2. Media Queries 
-Combining Media Queries with Variable scope gives unlocks a profound way of handling responsive design. 
+Once we throw media queries in the mix, having component level grid declaration unlocks a profound way of handling responsive design. Lets take our above code, and throw in a nested ```min-width``` media query. 
+```CSS
+.news {
+  /* news Custom Properties */
+  --news-columns: 1fr;
+  --news-rows: repeat(6, 220px);
 
-(More to come soon)
+  /* .news Component Properties */
+  display: grid;
+  grid-template-columns: var(--columns);
+  grid-template-rows: var(--rows);
 
-
-
-When I was first acclimated with layout properties as a younger dev, it was an amalgamation of float & inline block hacks, augmented by UI frameworks to emulate an established grid system, still (in my opinion) falling short of such grid systems presented in print software, and with additional roadblocks presented thanks to the nature of responsive design. What about breakpoints? Responsive typography? Flexbox came along and finally presented a viable solution to such layout problems- and even enhanced them. Yet there was still a spot
+  /* .news Responsive Properties */
+  @media screen and (min-width: 768px) { 
+    --news-columns: repeat(3, 1fr);
+    --news-rows: repeat(3, 1fr);
+  }
+```
+In the code above, we can now redefine our custom properties inside the media query, because unlike variables inside a preprocessor such as SASS, Custom Properties are living, breathing values inside the browser, and can be redefined as our design grows bigger. This makes our lives easier as developers because we are now just assigning our layout value once, and then adjusting the custom properties as necessary, instead of having to redeclare and redefine layout properties on our component every time the screen size changes.
