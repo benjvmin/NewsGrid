@@ -37,7 +37,7 @@
     }
 
     &:nth-child(1) {
-      background-image: var(--linear-gradient), resolve("mountains.jpg");
+      background-image: var(--linear-gradient), url("../assets/mountains.jpg");
       background-size: cover;
       background-position: center;
       // background: resolve('mountains.jpg') var(--linear-gradient);
@@ -48,7 +48,7 @@
     }
 
     &:nth-child(2) {
-      background-image: var(--linear-gradient), resolve("football.jpg");
+      background-image: var(--linear-gradient), url("../assets/football.jpg");
       background-size: cover;
       @include respond-to("min-width", medium) {
         grid-row: span 2;
@@ -56,24 +56,24 @@
     }
 
     &:nth-child(3) {
-      background-image: var(--linear-gradient), resolve("plants.jpg");
+      background-image: var(--linear-gradient), url("../assets/plants.jpg");
       background-size: cover;
     }
 
     &:nth-child(4) {
-      background-image: var(--linear-gradient), resolve("city.jpg");
+      background-image: var(--linear-gradient), url("../assets/city.jpg");
       background-size: cover;
       background-position: center;
     }
 
     &:nth-child(5) {
-      background-image: var(--linear-gradient), resolve("boys.jpg");
+      background-image: var(--linear-gradient), url("../assets/boys.jpg");
       background-position: center;
       background-size: cover;
     }
 
     &:nth-child(6) {
-      background-image: var(--linear-gradient), resolve("bowl.jpg");
+      background-image: var(--linear-gradient), url("../assets/bowl.jpg");
       background-size: cover;
     }
 
