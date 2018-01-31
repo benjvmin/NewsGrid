@@ -1,3 +1,5 @@
+# News Grid
+
 [Demo Here](https://benjvmin.github.io/NewsGrid/prod/index.html)
 
 A mock News Application demonstrating how CSS Grid & CSS Custom Properties can change the look and feel of an application with minimal javascript. 
