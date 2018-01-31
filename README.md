@@ -8,19 +8,19 @@ Change the color theme under the menu options, as well as a dark mode toggle.
 
 # What I learned While Embracing CSS Grid & CSS Custom Properties (CSS Variables)
 
-If it hasn't been clear now how CSS Grid will forever change the way we reason with layout in CSS- let me help clarify a bit. This shift towards an all encompassing layout solution is signigicant on it's own for a number of reasons, but alongside CSS Custom Properties spec, it downright a gamechanger in how we reason about CSS from napkin mockup to shipped product. 
+If it hasn't been clear now how CSS Grid will forever change the way we reason with layout in CSS- I'd hope that what I can put forth will help facilitate that discussion. This shift towards a multifaceted layout solution is signigicant on it's own for a number of reasons, but alongside CSS Custom Properties spec, it downright a gamechanger in how we reason with responsive stylesheets. Together [CSS Grid](https://caniuse.com/#feat=css-grid) & [CSS Variables](https://caniuse.com/#search=css%20variables) operate on nearly the same amount of browsers together, while each spec provides a foundation for how we work with CSS now & in the future. Therefore it's highly important that must explore what can be done to correctly utilize CSS Grid & CSS Custom Properties together to reach their maximum potential. 
 
 For the uninitiated here are some fantastic resouces on CSS Grid & Custom Properties
 
 CSS Grid
-[Grid By Example](https://gridbyexample.com/examples/)
-[CSS Grid MDN Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout)
-[A Complete Guide to Grid](https://css-tricks.com/snippets/css/complete-guide-grid/)
+* [Grid By Example](https://gridbyexample.com/examples/)
+* [CSS Grid MDN Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout)
+* [A Complete Guide to Grid](https://css-tricks.com/snippets/css/complete-guide-grid/)
 
 Custom Properties 
-[MDN Custom Properties](https://developer.mozilla.org/en-US/docs/Web/CSS/--*)
-[It's Time To Start Using CSS Custom Properties](https://www.smashingmagazine.com/2017/04/start-using-css-custom-properties/)
-[CSS Custom Properties and Theming](https://css-tricks.com/css-custom-properties-theming/)
+* [MDN Custom Properties](https://developer.mozilla.org/en-US/docs/Web/CSS/--*)
+* [It's Time To Start Using CSS Custom Properties](https://www.smashingmagazine.com/2017/04/start-using-css-custom-properties/)
+* [CSS Custom Properties and Theming](https://css-tricks.com/css-custom-properties-theming/)
 
 
 Here are the biggest things I've learned from putting these specs into practice.
