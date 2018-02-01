@@ -72,7 +72,6 @@ nav {
   }
 }
 
-
 .menu {
   position: fixed;
   width: 100%;
@@ -83,7 +82,7 @@ nav {
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: all 0.4s cubic-bezier(.6,.23,0,.87);
+  transition: all 0.4s cubic-bezier(0.6, 0.23, 0, 0.87);
 
   &.active {
     transform: translate3d(0, 0%, 0);
@@ -106,7 +105,6 @@ nav {
 
       & .exit-path {
         fill: var(--font-color);
-
       }
     }
   }
@@ -118,14 +116,13 @@ nav {
     }
   }
 
-
   & .menu-module {
     padding: 10px 0;
     color: var(--font-color);
     width: 100%;
     transform: translateX(-20%);
     opacity: 0;
-    transition: all 0.4s cubic-bezier(0.215, 0.610, 0.355, 1);
+    transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
 
     &.slide-in {
       transform: translateX(0%);
@@ -184,9 +181,46 @@ nav {
 
       & .menu-grid__property {
         border-radius: 2px;
+        overflow: hidden;
+        position: relative;
 
         &:hover {
           cursor: pointer;
+        }
+
+        & .material-circle {
+          position: absolute;
+          width: 10px;
+          height: 10px;
+          
+          border-radius: 50%;
+          background-color: rgba(255, 255, 255, 0.5);
+          transition: transform 0.6s ease-in-out;
+          opacity: 0;
+          top: 0;
+          left: 0;
+
+
+          &.expand {
+            animation: expand;
+            animation-duration: 0.8s;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: 1;
+          }
+
+          @keyframes expand {
+            0% {
+              opacity: 1;
+            }
+            50% {
+              opacity: 0.4;
+            }
+            100% {
+              transform: scale(120);
+              opacity: 0;
+              
+            }
+          }
         }
       }
 
@@ -211,8 +245,6 @@ nav {
       @each $color in $colors {
         & .menu-grid__property.#{$color} {
           background-color: var(--#{$color});
-
-
         }
       }
     }
@@ -224,7 +256,6 @@ nav {
   margin: auto;
 
   & h3.menu-header {
-
   }
   & .dark-mode-toggle {
     -webkit-tap-highlight-color: transparent;
@@ -237,14 +268,12 @@ nav {
     @include respond-to("min-width", medium) {
       width: 80px;
       border-radius: 60px;
-
     }
-
 
     //SVG Component
     & svg.dark-mode-button {
       padding: 0 0 20px 0;
-      
+
       & .background {
         fill: var(--font-color);
       }
@@ -254,8 +283,6 @@ nav {
       }
 
       & .toggle-button {
-    
-
         &.dark-active {
           animation-name: toggle-dark;
           animation-duration: 0.3s;
@@ -264,15 +291,14 @@ nav {
           animation-delay: 0s;
           animation-fill-mode: forwards;
           @keyframes toggle-dark {
-            0% { 
-              transform: translateX(0) scale(1, 1);              
-             }
+            0% {
+              transform: translateX(0) scale(1, 1);
+            }
 
             100% {
               transform: translate(25px, 0px) scale(1, 1);
             }
-          } 
-
+          }
         }
         &.light-active {
           animation-name: toggle-light;
@@ -282,13 +308,13 @@ nav {
           animation-delay: 0s;
           animation-fill-mode: forwards;
           @keyframes toggle-light {
-            0% { 
-              transform: translate(25px,0) scale(1, 1);              
-             }
+            0% {
+              transform: translate(25px, 0) scale(1, 1);
+            }
             100% {
               transform: translate(0px, 0px) scale(1, 1);
             }
-          } 
+          }
         }
       }
     }
